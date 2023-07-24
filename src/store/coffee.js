@@ -98,9 +98,45 @@ const coffeeSlice = createSlice({
     reducers:{
         ClickCoffee:(state,action) =>{
             state.coffee = state.coffee + action.payload;
+            let arr = state.producers;
+            let result = arr.map(x=> {
+                if(x.unlocked !== true){
+                    if(state.coffee >= (x.price * 0.5)){
+                        x.unlocked = true;
+                    }
+                }
+                return x;
+            })
             return state;
-        }
+        },
+       AttempToBuyProducer:(state,action)=>{
+        let arr = state.producers;
+        let result = arr.map(x=>{
+            if(x.id ===action.payload){
+                x.qty++;
+                state.coffee = state.coffee - x.price;
+                state.totalCPS = state.totalCPS + x.cps;
+                x.price = Math.floor(x.price * 1.25);
+            }
+            return x;
+        })
+        return state;
+       },
+       AttempToSellProducer:(state,action) => {
+        let arr = state.producers;
+        let result = arr.map(x => {
+            if(x.id === action.payload) {
+                x.qty--;
+                state.coffee = state.coffee + Math.floor(x.price/1.25 * 0.6);
+                state.totalCPS = state.totalCPS-x.cps;
+                x.price = Math.floor(x.price * 0.84);
+            }
+            return x;
+        })
+        return state;
+        
+       }
     },
 })
-
+export const {ClickCoffee,AttempToBuyProducer,AttempToSellProducer} =coffeeSlice.actions;
 export default coffeeSlice.reducer;
