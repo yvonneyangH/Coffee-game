@@ -1,7 +1,8 @@
 import React,{useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ClickCoffee,Tick,UnlockProducers } from '../store';
+import { ClickCoffee,Tick,UnlockBackground,UnlockProducers } from '../store';
 import Producers from './Producer';
+import CoffeeStore from './CoffeeStore';
 
 
 const Game = ()=> {
@@ -9,6 +10,7 @@ const Game = ()=> {
     console.log("coffee:",coffee);
     const dispatch = useDispatch();
     const [showCoffeePerClick,setShowCoffeePerClick] = useState(false);
+    const [url,setUrl] = useState(null);
     
     const handleClickCoffee = () => {
         dispatch(ClickCoffee(1));
@@ -18,10 +20,16 @@ const Game = ()=> {
           }, 300);
     }
 
+    const changeBackground = (url) =>{
+        setUrl(url);
+        console.log('update url')
+    }
+
 
     
     useEffect(() =>{
         dispatch(UnlockProducers());
+        dispatch(UnlockBackground());
     },[coffee]);
 
     useEffect(() => {
@@ -39,7 +47,16 @@ const Game = ()=> {
 
   return (
     <div>
-        <div className="column-container" id="test">
+        <div 
+            className="column-container" 
+            id="test" 
+            style={
+                url===null?
+                    { backgroundColor:"#cea573" } 
+                : 
+                    {  backgroundImage: `url('${url}')`,backgroundSize: "cover", backgroundPosition: "center center" }
+                }
+        >
             <div className="column">
                 <div className="container left">
                     <div className="counter-container">Coffee: <span id="coffee_counter">{coffee.coffee}</span></div>
@@ -56,9 +73,13 @@ const Game = ()=> {
                 </div>
             </div>
             <div className="column">
+                <div className="column-header">Coffee Store</div>
+                <div className="container right" id="store_container" style={{backgroundColor:"rgb(206 165 115 / 73%)"}}>
+                    <CoffeeStore changeBackground={changeBackground}/>
+                </div>
                 <div className="column-header">Coffee Producers</div>
-                <div className="container right" id="producer_container">
-                <Producers/>
+                <div className="container right" id="producer_container" style={{backgroundColor:"rgb(206 165 115 / 73%)"}}>
+                    <Producers/>
                 </div>   
             </div>
         </div>

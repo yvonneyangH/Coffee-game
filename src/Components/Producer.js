@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AttempToBuyProducer, AttempToSellProducer } from '../store';
 
 
+
 const Producers = () => {
     const {coffee} = useSelector(state => state);
     const dispatch = useDispatch();
