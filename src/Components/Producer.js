@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AttempToBuyProducer, AttempToSellProducer,Tick } from '../store';
+import { AttempToBuyProducer, AttempToSellProducer } from '../store';
 
 
 const Producers = () => {
@@ -23,17 +23,17 @@ const Producers = () => {
         dispatch(AttempToSellProducer(id));
     }
     useEffect(()=>{
-        console.log("hi");
+        // console.log("hi");
         const result = coffee.producers.filter((p)=>{
             return p.unlocked===true;
         })
-        console.log("result:",result);
+        // console.log("result:",result);
         setShowProducers(result);
     },[coffee]);
 
 
 
-    console.log("showProducers:",showProducers);
+    // console.log("showProducers:",showProducers);
     return (
         <>
         {

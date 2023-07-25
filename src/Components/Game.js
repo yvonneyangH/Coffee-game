@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ClickCoffee,Tick,UnlockProducers } from '../store';
 import Producers from './Producer';
@@ -8,6 +8,15 @@ const Game = ()=> {
     const {coffee} = useSelector(state => state);
     console.log("coffee:",coffee);
     const dispatch = useDispatch();
+    const [showCoffeePerClick,setShowCoffeePerClick] = useState(false);
+    
+    const handleClickCoffee = () => {
+        dispatch(ClickCoffee(1));
+        setShowCoffeePerClick(true);
+        setTimeout(() => {
+            setShowCoffeePerClick(false);
+          }, 300);
+    }
 
 
     
@@ -35,7 +44,11 @@ const Game = ()=> {
                 <div className="container left">
                     <div className="counter-container">Coffee: <span id="coffee_counter">{coffee.coffee}</span></div>
                     <div className="cps-container"><span id="cps">{coffee.totalCPS}</span> coffee/second</div>
-                    <div id="big_coffee" onClick={()=>dispatch(ClickCoffee(1))}>☕️</div>
+                    <div id="big_coffee" onClick={handleClickCoffee}>☕️
+                    { showCoffeePerClick&&
+                        <span className="click-animation" style={{color:"white"}}>+1</span>
+                    }
+                    </div>
                     <div id = 'save_load'>
                     <button className ='store' id ='save'>SAVE</button>
                     <button className ='store' id ='load'>LOAD</button>
