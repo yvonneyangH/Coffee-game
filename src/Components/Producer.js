@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AttempToBuyProducer, AttempToSellProducer } from '../store';
+import { AttempToBuyProducer, AttempToSellProducer,Tick } from '../store';
 
 
 const Producers = () => {
@@ -30,6 +30,8 @@ const Producers = () => {
         console.log("result:",result);
         setShowProducers(result);
     },[coffee]);
+
+
 
     console.log("showProducers:",showProducers);
     return (

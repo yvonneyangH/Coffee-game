@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Home from './Home';
 import Login from './Login';
-import Cart from './Cart';
+
 import Game from './Game';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginWithToken, fetchCart } from '../store';

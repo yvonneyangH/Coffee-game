@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ClickCoffee } from '../store';
+import { ClickCoffee,Tick,UnlockProducers } from '../store';
 import Producers from './Producer';
 
 
@@ -8,6 +8,24 @@ const Game = ()=> {
     const {coffee} = useSelector(state => state);
     console.log("coffee:",coffee);
     const dispatch = useDispatch();
+
+
+    
+    useEffect(() =>{
+        dispatch(UnlockProducers());
+    },[coffee]);
+
+    useEffect(() => {
+        // Function to call the Tick function and update coffee count
+        const tickInterval = setInterval(() => {
+          dispatch(Tick());
+        }, 1000);
+    
+        // Clean up the interval when the component unmounts
+        return () => {
+          clearInterval(tickInterval);
+        };
+      }, [dispatch]);
     
 
   return (
