@@ -5,6 +5,7 @@ const initialState={
     coffee: 0,
     totalCPS: 0,
     totalCoffee: 0,
+    diceRoll:0,
     producers: [
       {
         id: 'chemex',
@@ -22,35 +23,35 @@ const initialState={
       },
       {
         id: 'mr._coffee',
-        price: 100,
+        price: 250,
         unlocked: false,
         cps: 5,
         qty: 0
       },
       {
         id: 'ten_cup_urn',
-        price: 500,
+        price: 1250,
         unlocked: false,
         cps: 10,
         qty: 0
       },
       {
         id: 'espresso_machine',
-        price: 1000,
+        price: 5000,
         unlocked: false,
         cps: 20,
         qty: 0
       },
       {
         id: 'ten_gallon_urn',
-        price: 5000,
+        price: 25000,
         unlocked: false,
         cps: 50,
         qty: 0
       },
       {
         id: 'coffeeshop',
-        price: 10000,
+        price: 100000,
         unlocked: false,
         cps: 75,
         qty: 0
@@ -244,5 +245,5 @@ const coffeeSlice = createSlice({
        
     },
 })
-export const {ClickCoffee,AttempToBuyProducer,AttempToSellProducer,Tick,UnlockProducers,UnlockBackground} =coffeeSlice.actions;
+export const {ClickCoffee,AttempToBuyProducer,AttempToSellProducer,Tick,UnlockProducers,UnlockBackground} = coffeeSlice.actions;
 export default coffeeSlice.reducer;

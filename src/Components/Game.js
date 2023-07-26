@@ -24,8 +24,6 @@ const Game = ()=> {
         setUrl(url);
         console.log('update url')
     }
-
-
     
     useEffect(() =>{
         dispatch(UnlockProducers());
@@ -36,6 +34,7 @@ const Game = ()=> {
         // Function to call the Tick function and update coffee count
         const tickInterval = setInterval(() => {
           dispatch(Tick());
+          
         }, 1000);
     
         // Clean up the interval when the component unmounts
@@ -51,10 +50,8 @@ const Game = ()=> {
             className="column-container" 
             id="test" 
             style={
-                url===null?
-                    { backgroundColor:"#cea573" } 
-                : 
-                    {  backgroundImage: `url('${url}')`,backgroundSize: "cover", backgroundPosition: "center center" }
+                url===null?{ backgroundColor:"#cea573" } 
+                : {  backgroundImage: `url('${url}')`,backgroundSize: "cover", backgroundPosition: "center center" }
                 }
         >
             <div className="column">
