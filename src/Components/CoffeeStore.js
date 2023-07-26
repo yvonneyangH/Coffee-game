@@ -5,10 +5,10 @@ const CoffeeStore = (props) =>{
     const {coffee} = useSelector(state => state); 
     const changeBackground=props.changeBackground;
     const [showBackgrounds,setShowBackgrounds]= useState([]);
-    console.log('coffee:',coffee);
+    // console.log('coffee:',coffee);
     useEffect(()=>{
         if(coffee !== undefined){
-            console.log("coffee.background",coffee.background)
+            // console.log("coffee.background",coffee.background)
             const result = coffee.backgrounds.filter((b)=>{
                 return b.unlocked===true;
             })

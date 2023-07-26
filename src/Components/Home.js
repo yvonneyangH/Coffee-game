@@ -5,9 +5,9 @@ import React from 'react';
 const Home = ()=> {
   return (
     <div>
-      <h1>Home</h1>
+      <h1 style={{color:"white"}}>Home</h1>
       <div>
-        <h2>welbome to home</h2>
+        <h2 style={{color:"white"}}>welbome to home</h2>
       </div>
     </div>
   );

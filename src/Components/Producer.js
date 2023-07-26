@@ -7,9 +7,9 @@ import { AttempToBuyProducer, AttempToSellProducer } from '../store';
 const Producers = () => {
     const {coffee} = useSelector(state => state);
     const dispatch = useDispatch();
-    console.log(coffee);
+    // console.log(coffee);
     const [showProducers,setShowProducers] = useState([]);
-    console.log(coffee.producers);
+    // console.log(coffee.producers);
     const handleBuy = (id,price) =>{
         console.log('buy id:',id,"price:",price)
         if (coffee.coffee>=price){
@@ -20,7 +20,7 @@ const Producers = () => {
         }
     }
     const handleSell=(id,price)=>{
-        console.log('sell')
+        // console.log('sell')
         dispatch(AttempToSellProducer(id));
     }
     useEffect(()=>{

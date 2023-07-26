@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ClickCoffee, Tick, UnlockBackground, UnlockProducers, RollDice, BonusKill } from '../store';
+import { ClickCoffee, Tick, UnlockBackground, UnlockProducers, RollDice, BonusKill, UpdateInitialState } from '../store';
 import Producers from './Producer';
 import CoffeeStore from './CoffeeStore';
 import RandomCoffee from './RandomCoffee';
@@ -8,8 +8,8 @@ import RandomCoffee from './RandomCoffee';
 
 const Game = ()=> {
     const {coffee,bonusCoffee} = useSelector(state => state);
-    console.log("coffee:",coffee);
-    console.log("bonusCoffee:",bonusCoffee);
+    // console.log("coffee:",coffee);
+    // console.log("bonusCoffee:",bonusCoffee);
     const dispatch = useDispatch();
     const [showCoffeePerClick,setShowCoffeePerClick] = useState(false);
     const [intervalActive,setIntervalActive] =useState(false);
@@ -36,6 +36,23 @@ const Game = ()=> {
         setUrl(url);
         console.log('update url')
     }
+
+    const saveLocal =() => {
+        console.log("coffee:",coffee);
+        window.localStorage.setItem("gameLog",JSON.stringify(coffee));
+        console.log('set LocalStorage');
+        let log =window.localStorage.getItem("gameLog");
+        console.log("parse log:",JSON.parse(log));
+
+    }
+    const loadLocal = () => {
+        const saveGameLog = window.localStorage.getItem("gameLog");
+        if(saveGameLog) {
+            const parsedGameLog = JSON.parse(saveGameLog);
+            dispatch(UpdateInitialState(parsedGameLog));
+        }
+
+    }
     
     useEffect(() =>{
         dispatch(UnlockProducers());
@@ -48,7 +65,7 @@ const Game = ()=> {
           dispatch(Tick());
           dispatch(RollDice());
           dispatch(BonusKill());
-        }, 5000);
+        }, 1000);
     
         // Clean up the interval when the component unmounts
         return () => {
@@ -78,8 +95,8 @@ const Game = ()=> {
                     }
                     </div>
                     <div id = 'save_load'>
-                        <button className ='store' id ='save'>SAVE</button>
-                        <button className ='store' id ='load'>LOAD</button>
+                        <button className ='store' id ='save' onClick={saveLocal}>SAVE</button>
+                        <button className ='store' id ='load' onClick={loadLocal}>LOAD</button>
                     </div>
                 </div>
             </div>

@@ -21,16 +21,24 @@ const App = ()=> {
   }, [auth]);
   return (
           <div>
-            <nav>
-              <Link to='/'>Home</Link>
-              <Link to='/game'>Game</Link>
-            </nav>
             <Routes>
-              <Route path='/' element={ <Home /> } />
-              <Route path='/game' element={ <Game /> } />
+              <Route path='/' element={ <Game /> } />
             </Routes>
           </div>
   );
+
+  // return (
+  //     <div>
+  //       <nav>
+  //         <Link to='/'>Home</Link>
+  //         <Link to='/game'>Game</Link>
+  //       </nav>
+  //       <Routes>
+  //         <Route path='/' element={ <Home /> } />
+  //         <Route path='/game' element={ <Game /> } />
+  //       </Routes>
+  //     </div>
+  // );
 };
 
 export default App;

@@ -26,7 +26,6 @@ const RandomCoffee = () =>{
             return g.active === true;
         })
         setBCoffee(temp[0]);
-        console.log("b");
     },[bonusCoffee]);
 
     useEffect(() => {
@@ -65,7 +64,7 @@ const RandomCoffee = () =>{
                 justifyContent:"center",
                 zIndex:999}}
             >
-            <img src={'static/img/latte.svg'} style={{width:"15rem",height:"15rem", animation: 'glowingAnimation 10s'}} onClick={handleActiveBonus}></img>
+            <img src={'static/img/latte.png'} style={{width:"8rem",height:"8rem", animation: 'glowingAnimation 10s'}} onClick={handleActiveBonus}></img>
             </div>
             ):(null)}
             {showBonusSignal && <span className="bonus-signal"  
