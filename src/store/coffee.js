@@ -5,7 +5,6 @@ const initialState={
     coffee: 0,
     totalCPS: 0,
     totalCoffee: 0,
-    diceRoll:0,
     producers: [
       {
         id: 'chemex',
