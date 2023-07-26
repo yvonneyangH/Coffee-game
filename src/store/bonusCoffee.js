@@ -18,7 +18,8 @@ const bonusCoffeeSlice = createSlice({
     initialState,
     reducers:{
         RollDice:(state) => {
-            let dice = Math.floor(Math.random() * 2) + 1; //make this random number 1-100
+            let dice = Math.floor(Math.random() * 2) + 1;
+            console.log("dice:",dice) //make this random number 1-100
             let x = Math.floor(Math.random()*81+10) ;
             let y = Math.floor(Math.random()*81+10) ;
             let arr = state.goldern_cup;
@@ -36,18 +37,30 @@ const bonusCoffeeSlice = createSlice({
         },
         BonusKill:(state) =>{
             let arr = state.goldern_cup;
-            let result = arr.map(x =>{
-                if(x.active === true){
-                    x.life--;
-                    if(x.life<=0){
-                        x.active = false;
+            let result = arr.map(b =>{
+                if(b.active === true){
+                    b.life--;
+                    if(b.life<=0){
+                        b.active = false;
                     }
-                }return x;
+                }
+                return b;
+            })
+            return state;
+        },
+        ActiveBonus:(state) =>{
+            let arr = state.goldern_cup;
+            let result = arr.map(b=> {
+                if(b.active === true) {
+                    b.life =0;
+                    b.active =false;
+                }
+                return b; 
             })
             return state;
         }
     }
 })
 
-export const {RollDice,BonusKill} = bonusCoffeeSlice.actions;
+export const {RollDice,BonusKill,ActiveBonus} = bonusCoffeeSlice.actions;
 export default bonusCoffeeSlice.reducer;

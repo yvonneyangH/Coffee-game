@@ -12,14 +12,24 @@ const Game = ()=> {
     console.log("bonusCoffee:",bonusCoffee);
     const dispatch = useDispatch();
     const [showCoffeePerClick,setShowCoffeePerClick] = useState(false);
+    const [intervalActive,setIntervalActive] =useState(false);
     const [url,setUrl] = useState(null);
+
+    const stopInterval = () => {
+        setIntervalActive(false);
+      };
+    
+      // Function to start the interval
+      const startInterval = () => {
+        setIntervalActive(true);
+      };
     
     const handleClickCoffee = () => {
         dispatch(ClickCoffee(1));
         setShowCoffeePerClick(true);
         setTimeout(() => {
             setShowCoffeePerClick(false);
-          }, 300);
+          }, 500);
     }
 
     const changeBackground = (url) =>{
@@ -38,7 +48,7 @@ const Game = ()=> {
           dispatch(Tick());
           dispatch(RollDice());
           dispatch(BonusKill());
-        }, 1000);
+        }, 5000);
     
         // Clean up the interval when the component unmounts
         return () => {

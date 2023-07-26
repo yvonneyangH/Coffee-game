@@ -1,33 +1,81 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import bonusCoffee from '../store/bonusCoffee';
+import { ActiveBonus } from '../store/bonusCoffee';
+import { AddBonusCoffee } from '../store/coffee';
 
 const RandomCoffee = () =>{
     const {coffee,bonusCoffee} = useSelector(state => state);
-    console.log("bonusCoffee:",bonusCoffee);
-    const [positionX,setPositionX] = useState(null);
-    const [positionY,setPositionY] = useState(null);
     const [bCoffee,setBCoffee] = useState(null);
+    const [showBonusSignal,setShowBonusSignal] = useState(false);
+    const dispatch = useDispatch();
+    const bonusSignalRef = useRef(false);
+    const [harvestCoffee,setHarvestCoffee] = useState(null);
+
+    const handleActiveBonus = () => {
+            dispatch(ActiveBonus());
+            dispatch(AddBonusCoffee());
+            setShowBonusSignal(true);
+            bonusSignalRef.current = true;
+    }
+    useEffect(()=>{
+        setHarvestCoffee(coffee);
+    },[coffee])
+
     useEffect(() =>{
         const temp = bonusCoffee.goldern_cup.filter((g) =>{
             return g.active === true;
         })
         setBCoffee(temp[0]);
         console.log("b");
-    },[bonusCoffee])
+    },[bonusCoffee]);
 
-    
+    useEffect(() => {
+       
+        const cleanup = () => {
+            bonusSignalRef.current = false;
+        };
+
+ 
+        if (showBonusSignal) {
+            setTimeout(() => {
+                setShowBonusSignal(false);
+            }, 2000);
+        }
+
+        return cleanup;
+    }, [showBonusSignal]);
+
+    const positionXRef = useRef(bCoffee?.positionX);
+    const positionYRef = useRef(bCoffee?.positionY);
+    useEffect(()=>{
+        positionXRef.current = bCoffee?.positionX
+        positionYRef.current = bCoffee?.positionY
+    }, [bCoffee?.positionX]);
+
     return (
-        bCoffee && (<span 
+        <>
+        {bCoffee && harvestCoffee.coffee>0 ? (<div 
             style={{
                 position:"absolute",
                 top:`${bCoffee.positionX}vh`,
                 left:`${bCoffee.positionY}vw`,
-                animation: 'fadeInOutScaleVibrate 10s infinite'}}
+                animation: 'fadeInOutScaleVibrate 20s infinite',
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center",
+                zIndex:999}}
             >
-            <img src={'static/img/latte.svg'} style={{width:"15rem",height:"15rem"}}></img>
-            </span>
-            )
+            <img src={'static/img/latte.svg'} style={{width:"15rem",height:"15rem", animation: 'glowingAnimation 10s'}} onClick={handleActiveBonus}></img>
+            </div>
+            ):(null)}
+            {showBonusSignal && <span className="bonus-signal"  
+            style={{
+                position:"absolute",
+                top:`${positionXRef.current}vh`,
+                left:`${positionYRef.current}vw`,
+                // animation: 'fadeInOutScaleVibrate 10s infinite',
+                zIndex:999}}>COFFEE + 5% </span>}
+        </>
     )
 }
-export default RandomCoffee;
+export default RandomCoffee;   

@@ -239,10 +239,13 @@ const coffeeSlice = createSlice({
             return x;
         })
         return state;
-
+       },
+       AddBonusCoffee:(state) => {
+        state.coffee = Math.ceil(state.coffee*1.05);
+        return state;
        }
        
     },
 })
-export const {ClickCoffee,AttempToBuyProducer,AttempToSellProducer,Tick,UnlockProducers,UnlockBackground} = coffeeSlice.actions;
+export const {ClickCoffee,AttempToBuyProducer,AttempToSellProducer,Tick,UnlockProducers,UnlockBackground,AddBonusCoffee} = coffeeSlice.actions;
 export default coffeeSlice.reducer;
