@@ -315,3 +315,11 @@ div{
   justify-content: center;
   z-index: 999; /* Make sure it has a higher z-index than other elements to overlay them */
 }
+.describe {
+  text-align:left;
+}
+
+.button-disabled {
+  /* pointer-events: none; Disables mouse events on the button */
+  opacity: 0.5; /* Optionally reduce the opacity to visually indicate it's disabled */
+}

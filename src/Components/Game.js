@@ -9,22 +9,12 @@ import UpgradeInfo from './UpgradeInfo';
 
 const Game = ()=> {
     const {coffee,bonusCoffee} = useSelector(state => state);
-    // console.log("coffee:",coffee);
+    console.log("coffee:",coffee);
     // console.log("bonusCoffee:",bonusCoffee);
     const dispatch = useDispatch();
     const [showCoffeePerClick,setShowCoffeePerClick] = useState(false);
     const [intervalActive,setIntervalActive] =useState(false);
     const [url,setUrl] = useState(null);
-    const [isHovering, setIsHovering] = useState(false);
-
-
-    const handleMouseOver = () => {
-        setIsHovering(true);
-    }
-
-    const handleMouseOut = () => {
-        setIsHovering(false);
-      }
 
     const stopInterval = () => {
         setIntervalActive(false);
@@ -36,7 +26,7 @@ const Game = ()=> {
       };
     
     const handleClickCoffee = () => {
-        dispatch(ClickCoffee(1));
+        dispatch(ClickCoffee(coffee.coffeePClick));
         setShowCoffeePerClick(true);
         setTimeout(() => {
             setShowCoffeePerClick(false);
@@ -76,7 +66,7 @@ const Game = ()=> {
           dispatch(Tick());
           dispatch(RollDice());
           dispatch(BonusKill());
-        }, 1000);
+        }, 30000);
     
         // Clean up the interval when the component unmounts
         return () => {
@@ -102,7 +92,7 @@ const Game = ()=> {
                     <RandomCoffee/>
                     <div id="big_coffee" onClick={handleClickCoffee}>☕️
                     { showCoffeePerClick&&
-                        <span className="click-animation" style={{color:"white"}}>+1</span>
+                        <span className="click-animation" style={{color:"white"}}>+{coffee.coffeePClick}</span>
                     }
                     </div>
                     <div id = 'save_load'>
@@ -111,15 +101,11 @@ const Game = ()=> {
                     </div>
                 </div>
             </div>
-            <div className="info">
-                {
-                    isHovering &&(<UpgradeInfo/>)
-                }
-            </div>
+           
             <div className="column">
                 <div className="column-header">Upgrade Cafe</div>
                 <div className="container right" id="store_container" style={{backgroundColor:"rgb(206 165 115 / 73%)"}}>
-                    <CoffeeStore changeBackground={changeBackground} handleMouseOver={handleMouseOver} handleMouseOut={handleMouseOut}/>
+                    <CoffeeStore changeBackground={changeBackground} />
                 </div>
                 <div className="column-header">Coffee Producers</div>
                 <div className="container right" id="producer_container" style={{backgroundColor:"rgb(206 165 115 / 73%)"}}>
