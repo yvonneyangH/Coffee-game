@@ -101,7 +101,7 @@ const Game = ()=> {
                 </div>
             </div>
             <div className="column">
-                <div className="column-header">Coffee Store</div>
+                <div className="column-header">Upgrade Cafe</div>
                 <div className="container right" id="store_container" style={{backgroundColor:"rgb(206 165 115 / 73%)"}}>
                     <CoffeeStore changeBackground={changeBackground}/>
                 </div>

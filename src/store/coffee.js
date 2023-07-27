@@ -97,70 +97,70 @@ const initialState={
             unlocked: false,
             url: 'static/img/5230742.jpg',
             img:'static/img/store_level_1.svg',
-            needTotalCoffee:10,
+            needTotalCoffee:200,
         },
         {
             id: '2208',
             unlocked: false,
             url: 'static/img/2208.i203.049.S.m004.c13.restaurant bar cafe furniture interior cartoon.jpg',
             img:'static/img/store_level_2.svg',
-            needTotalCoffee:20,
+            needTotalCoffee:600,
         },
         {
             id: '2413',
             unlocked: false,
             url: 'static/img/2413.jpg',
             img:'static/img/store_level_3.svg',
-            needTotalCoffee:30,
+            needTotalCoffee:1000,
         },
         {
             id: '3398',
             unlocked: false,
             url: 'static/img/3398.jpg',
             img:'static/img/store_level_4.svg',
-            needTotalCoffee:40,
+            needTotalCoffee:5000,
         },
         {
             id: '2201',
             unlocked: false,
             url: 'static/img/2201.q702.010.S.m005.c12.coffee shop.jpg',
             img:'static/img/store_level_5.svg',
-            needTotalCoffee:50,
+            needTotalCoffee:10000,
         },
         {
             id: '2818',
             unlocked: false,
             url: 'static/img/2818892.jpg',
             img:'static/img/store_level_6.svg',
-            needTotalCoffee:60,
+            needTotalCoffee:20000,
         },
         {
             id: '5030',
             unlocked: false,
             url: 'static/img/5030563_2656251.jpg',
             img:'static/img/store_level_7.svg',
-            needTotalCoffee:70,
+            needTotalCoffee:50000,
         },
         {
             id: '1340',
             unlocked: false,
             url: 'static/img/AdobeStock_134055171.jpeg',
             img:'static/img/store_level_8.svg',
-            needTotalCoffee:80,
+            needTotalCoffee:100000,
         },
         {
             id: '2381',
             unlocked: false,
             url: 'static/img/AdobeStock_238191964.jpeg',
             img:'static/img/store_level_9.svg',
-            needTotalCoffee:90,
+            needTotalCoffee:200000,
         },
         {
             id: '2904',
             unlocked: false,
             url: 'static/img/AdobeStock_290470831.jpeg',
             img:'static/img/store_level_10.svg',
-            needTotalCoffee:100,
+            needTotalCoffee:500000,
         },
 
     ]
@@ -226,7 +226,6 @@ const coffeeSlice = createSlice({
             return x;
         })
         return state;
-
        },
        UnlockBackground: (state) => {
         let arr = state.backgrounds;
@@ -246,7 +245,7 @@ const coffeeSlice = createSlice({
        },
        UpdateInitialState:(state,action)=>{
         return action.payload;
-       }
+       },
        
     },
 })

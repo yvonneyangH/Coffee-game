@@ -18,7 +18,7 @@ const bonusCoffeeSlice = createSlice({
     initialState,
     reducers:{
         RollDice:(state) => {
-            let dice = Math.floor(Math.random() * 2) + 1;
+            let dice = Math.floor(Math.random() * 10) + 1;
             // console.log("dice:",dice) //make this random number 1-100
             let x = Math.floor(Math.random()*71+15) ;
             let y = Math.floor(Math.random()*71+15) ;

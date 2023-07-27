@@ -61,10 +61,11 @@ const RandomCoffee = () =>{
                 animation: 'fadeInOutScaleVibrate 20s infinite',
                 display:"flex",
                 alignItems:"center",
+                cursor:"pointer",
                 justifyContent:"center",
                 zIndex:999}}
             >
-            <img src={'static/img/latte.png'} style={{width:"8rem",height:"8rem", animation: 'glowingAnimation 10s'}} onClick={handleActiveBonus}></img>
+            <img src={'static/img/latte.png'} style={{width:"5rem",height:"5rem", animation: 'glowingAnimation 10s'}} onClick={handleActiveBonus}></img>
             </div>
             ):(null)}
             {showBonusSignal && <span className="bonus-signal"  
@@ -73,7 +74,8 @@ const RandomCoffee = () =>{
                 top:`${positionXRef.current}vh`,
                 left:`${positionYRef.current}vw`,
                 // animation: 'fadeInOutScaleVibrate 10s infinite',
-                zIndex:999}}>COFFEE + 5% </span>}
+                fontSize:"20px",
+                zIndex:999}}>Coffee +5% </span>}
         </>
     )
 }
