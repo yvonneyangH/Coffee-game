@@ -4,6 +4,7 @@ import { ClickCoffee, Tick, UnlockBackground, UnlockProducers, RollDice, BonusKi
 import Producers from './Producer';
 import CoffeeStore from './CoffeeStore';
 import RandomCoffee from './RandomCoffee';
+import UpgradeInfo from './UpgradeInfo';
 
 
 const Game = ()=> {
@@ -14,6 +15,16 @@ const Game = ()=> {
     const [showCoffeePerClick,setShowCoffeePerClick] = useState(false);
     const [intervalActive,setIntervalActive] =useState(false);
     const [url,setUrl] = useState(null);
+    const [isHovering, setIsHovering] = useState(false);
+
+
+    const handleMouseOver = () => {
+        setIsHovering(true);
+    }
+
+    const handleMouseOut = () => {
+        setIsHovering(false);
+      }
 
     const stopInterval = () => {
         setIntervalActive(false);
@@ -100,10 +111,15 @@ const Game = ()=> {
                     </div>
                 </div>
             </div>
+            <div className="info">
+                {
+                    isHovering &&(<UpgradeInfo/>)
+                }
+            </div>
             <div className="column">
                 <div className="column-header">Upgrade Cafe</div>
                 <div className="container right" id="store_container" style={{backgroundColor:"rgb(206 165 115 / 73%)"}}>
-                    <CoffeeStore changeBackground={changeBackground}/>
+                    <CoffeeStore changeBackground={changeBackground} handleMouseOver={handleMouseOver} handleMouseOut={handleMouseOut}/>
                 </div>
                 <div className="column-header">Coffee Producers</div>
                 <div className="container right" id="producer_container" style={{backgroundColor:"rgb(206 165 115 / 73%)"}}>

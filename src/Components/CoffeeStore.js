@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 const CoffeeStore = (props) =>{
     const {coffee} = useSelector(state => state); 
     const changeBackground=props.changeBackground;
+    const handleMouseOver = props.handleMouseOver;
+    const handleMouseOut = props.handleMouseOut;
     const [showBackgrounds,setShowBackgrounds]= useState([]);
+
     // console.log('coffee:',coffee);
     useEffect(()=>{
         if(coffee !== undefined){
@@ -22,8 +25,13 @@ const CoffeeStore = (props) =>{
             {
                 showBackgrounds.map((b,index)=>{
                     return(
-                        <button key={index} onClick={()=> changeBackground(b.url)} >
-                            <img src={b.img} alt={`Button`} style={{ width: '50px', height: '50px' }}/>
+                        <button 
+                            key={index} 
+                            onClick={()=> changeBackground(b.url)} 
+                            onMouseEnter={handleMouseOver}
+                            onMouseLeave={handleMouseOut}
+                         >
+                            <img src={b.img} alt={`Button`} style={{ width: '40px', height: '40px' }}/>
                         </button>
                     )
                 })
