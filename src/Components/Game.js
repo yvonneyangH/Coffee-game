@@ -66,7 +66,7 @@ const Game = ()=> {
           dispatch(Tick());
           dispatch(RollDice());
           dispatch(BonusKill());
-        }, 30000);
+        }, 1000);
     
         // Clean up the interval when the component unmounts
         return () => {
