@@ -66,7 +66,7 @@ const Game = ()=> {
           dispatch(Tick());
           dispatch(RollDice());
           dispatch(BonusKill());
-        }, 1000);
+        }, 100);
     
         // Clean up the interval when the component unmounts
         return () => {
@@ -87,7 +87,7 @@ const Game = ()=> {
         >
             <div className="column">
                 <div className="container left">
-                    <div className="counter-container">Coffee: <span id="coffee_counter">{coffee.coffee}</span></div>
+                    <div className="counter-container">Coffee: <span id="coffee_counter">{coffee.coffee.toFixed(2)}</span></div>
                     <div className="cps-container"><span id="cps">{coffee.totalCPS}</span> coffee/second</div>
                     <RandomCoffee/>
                     <div id="big_coffee" onClick={handleClickCoffee}>☕️

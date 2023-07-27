@@ -252,8 +252,8 @@ const coffeeSlice = createSlice({
             return state;
         },
         Tick:(state) =>{
-            state.coffee += state.totalCPS;
-            state.totalCoffee += state.totalCPS;
+            state.coffee += state.totalCPS/10;
+            state.totalCoffee += state.totalCPS/10;
             return state;
         },
         UnlockProducers: (state) => {
