@@ -20,20 +20,17 @@ const UpgradeInfo = (props) => {
           <div 
             className="modal-dialog modal-side modal-dialog-left  modal-dialog-centered" 
             role="document" 
-            style={{ marginLeft: '5rem', marginRight: 'auto', height: '700px', width: '12vw', maxWidth: '800px' }}
+            style={{ marginLeft: '5rem', marginRight: 'auto', height: '700px', width: '16vw',minWidth:'210px', maxWidth: '800px' }}
           >
-            <div className="modal-content" style={{position:"absolute",top:"2vh",right:"-2vw"}}>
+            <div className="modal-content" style={{position:"absolute",top:"2vh",right:"10%"}}>
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">{selectedUpgrade.id.toUpperCase()}</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close" >
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 className="modal-title"  style={{fontSize:"1rem",fontWeight:"bold"}} id="exampleModalLabel">{selectedUpgrade.id.toUpperCase()}<span>{selectedUpgrade.name.toUpperCase()}</span></h5>
               </div>
               <div className="modal-body" style={{ height: '120px', overflowY: 'auto' }}>
                 <p className="describe">{selectedUpgrade.describe}</p>
                 {selectedUpgrade.isUpgrade?
                   (<p>Already upgraded</p>)
-                  :(<p className="price">Price: {selectedUpgrade.needTotalCoffee} coffee</p>)
+                  :(<p className="price"style={{fontWeight:"bold"}}>Price: {selectedUpgrade.needTotalCoffee} coffee</p>)
                 }     
               </div>
               {
@@ -42,11 +39,11 @@ const UpgradeInfo = (props) => {
                       <p className="describe">switch Interior </p>
                   </div>
                 ):( 
-                  <div className="modal-footer" style={{ height: '50px', overflowY: 'auto' }}>
+                  <div className="modal-footer" style={{ height: '50px', overflowY: 'auto',backgroundColor:"" }}>
                     {
                       coffee.coffee>=selectedUpgrade.needTotalCoffee?
-                      (<p className="describe">Upgrade Available</p>)
-                      :(<p className="describe">Not enough coffee</p>)
+                      (<p className="describe" style={{fontWeight:"600"}}>UPGRADE AVAILABLE</p>)
+                      :(<p className="describe" style={{fontWeight:"600"}}>NOT ENOUGH COFFEE</p>)
                     }
                   </div>
                 )

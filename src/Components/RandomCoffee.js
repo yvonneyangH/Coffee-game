@@ -72,8 +72,8 @@ const RandomCoffee = () =>{
                 <div className="bonus-signal"  
                     style={{
                         position:"absolute",
-                        top:`${positionXRef.current}vh`,
-                        left:`${positionYRef.current}vw`,
+                        top:`${positionXRef.current-8}vh`,
+                        left:`${positionYRef.current-4}vw`,
                         // animation: 'fadeInOutScaleVibrate 10s infinite',
                         fontSize:"20px",
                         zIndex:999,

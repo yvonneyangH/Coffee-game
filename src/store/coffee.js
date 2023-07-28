@@ -7,94 +7,115 @@ const initialState={
     totalCoffee: 0,
     coffeePClick:1,
     producers: [
+    {
+        id: 'clicker',
+        price: 5,
+        unlocked: false,
+        cps: 0,
+        qty: 0,
+        imgUrl:'static/img/pointer.png',
+        },
       {
         id: 'chemex',
         price: 10,
-        unlocked: true,
+        unlocked: false,
         cps: 1,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/Chemex.png',
       },
       {
         id: 'french_press',
-        price: 50,
+        price: 100,
         unlocked: false,
         cps: 2,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/frenchPress.png',
       },
       {
         id: 'moka_pot',
-        price: 250,
-        unlocked: true,
+        price: 500,
+        unlocked:false,
         cps: 5,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/mokaPot.png',
       },
       {
         id: 'fancy_capsule',
-        price: 1250,
-        unlocked: true,
+        price: 2000,
+        unlocked: false,
         cps: 10,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/coffeeCapsule.png',
       },
       {
         id: 'stream_milk',
-        price: 5000,
-        unlocked: true,
+        price: 8000,
+        unlocked:false,
         cps: 20,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/streamMilk.png',
       },
       {
         id: 'coffee_grider',
-        price: 25000,
+        price: 40000,
         unlocked: false,
         cps: 50,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/coffeeGrinder01.png',
       },
       {
-        id: 'fancy_blender',
-        price: 100000,
-        unlocked: true,
+        id: 'speedy_blender',
+        price: 120000,
+        unlocked: false,
         cps: 75,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/blender.png',
       },
       {
         id: 'expresso_machine',
-        price: 50000,
+        price: 200000,
         unlocked: false,
         cps: 100,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/expressoMachine.png',
       },
       {
         id: 'roaster_machine',
-        price: 100000,
+        price: 600000,
         unlocked: false,
         cps: 200,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/roasterMachine.png',
       },
       {
         id: 'hulling_machine',
-        price: 500000,
-        unlocked: true,
+        price: 2000000,
+        unlocked: false,
         cps: 500,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/hullingMachine.png',
       },
       {
-        id: 'platinum_coffee_grinder',
-        price: 1000000,
-        unlocked: true,
-        cps: 1000,
-        qty: 0
-      },
-      {
-        id: 'Fabulous_coffee_shop',
+        id: 'platinum_grinder',
         price: 5000000,
-        unlocked: true,
+        unlocked: false,
+        cps: 1000,
+        qty: 0,
+        imgUrl:'static/img/coffeeGrinder02.png',
+      },
+      {
+        id: 'Magic_coffeeShop',
+        price: 15000000,
+        unlocked: false,
         cps: 2000,
-        qty: 0
+        qty: 0,
+        imgUrl:'static/img/coffeeShop.png',
       }
     ],
     backgrounds: [
         {
             id:'lv.1',
+            name:' Popup Cafe',
             imgId: '5230',
             unlocked: false,
             url: 'static/img/5230742.jpg',
@@ -105,6 +126,7 @@ const initialState={
             describe:"The mouse and cursors are twice as efficient."
         },
         {   id:'lv.2',
+            name:'Town Cafe',
             imgId: '2208',
             unlocked: false,
             url: 'static/img/2208.i203.049.S.m004.c13.restaurant bar cafe furniture interior cartoon.jpg',
@@ -116,6 +138,7 @@ const initialState={
         },
         {
             id:'lv.3',
+            name:' City Cafe',
             imgId: '2413',
             unlocked: false,
             url: 'static/img/2413.jpg',
@@ -126,6 +149,7 @@ const initialState={
             describe:"The mouse and cursors are 5 times as efficient."
         },
         {   id:'lv.4',
+            name:' Vintage Cafe',
             imgId: '3398',
             unlocked: false,
             url: 'static/img/3398.jpg',
@@ -137,6 +161,7 @@ const initialState={
         },
         {
             id:'lv.5',
+            name:'Boutique Cafe',
             imgId: '2201',
             unlocked: false,
             url: 'static/img/2201.q702.010.S.m005.c12.coffee shop.jpg',
@@ -148,6 +173,7 @@ const initialState={
         },
         {
             id:'lv.6',
+            name:'Coffee Lounge',
             imgId: '2818',
             unlocked: false,
             url: 'static/img/2818892.jpg',
@@ -159,6 +185,7 @@ const initialState={
         },
         {
             id:'lv.7',
+            name:'Chain Cafe',
             imgId: '5030',
             unlocked: false,
             url: 'static/img/5030563_2656251.jpg',
@@ -171,6 +198,7 @@ const initialState={
         },
         {
             id:'lv.8',
+            name:'Urban Cafe Hub',
             imgId: '1340',
             unlocked: false,
             url: 'static/img/AdobeStock_134055171.jpeg',
@@ -182,6 +210,7 @@ const initialState={
         },
         {
             id:'lv.9',
+            name:'International Cafe',
             imgId: '2381',
             unlocked: false,
             url: 'static/img/AdobeStock_238191964.jpeg',
@@ -193,6 +222,7 @@ const initialState={
         },
         {
             id:'lv.10',
+            name:'Coffee Empire',
             imgId: '2904',
             unlocked: false,
             url: 'static/img/AdobeStock_290470831.jpeg',
@@ -232,7 +262,21 @@ const coffeeSlice = createSlice({
                     x.qty++;
                     state.coffee = state.coffee - x.price;
                     state.totalCPS = state.totalCPS + x.cps;
-                    x.price = Math.floor(x.price * 1.25);
+                    if(x.id ==='clicker'){
+                        state.coffeePClick++;
+                        if(x.price<1000){
+                            x.price = Math.floor(x.price * 5);
+                        }else if(x.price<50000){
+                            x.price = Math.floor(x.price * 1.75);
+                        }else{
+                            x.price = Math.floor(x.price * 1.25);
+                        }
+                        
+
+                    }else{
+                        x.price = Math.floor(x.price * 1.25);
+                    }
+                    
                 }
                 return x;
             })
@@ -243,9 +287,14 @@ const coffeeSlice = createSlice({
             let result = arr.map(x => {
                 if(x.id === action.payload) {
                     x.qty--;
-                    state.coffee = state.coffee + Math.floor(x.price/1.25 * 0.5);
-                    state.totalCPS = state.totalCPS-x.cps;
-                    x.price = Math.floor(x.price * 0.84);
+                    if(x.id ==='clicker'){
+                        
+                        state.coffee = state.coffee + Math.floor(x.price/1.75 * 0.5);
+                        state.coffeePClick--;
+                    }else{
+                        state.totalCPS = state.totalCPS-x.cps;
+                    }
+                    // x.price = Math.floor(x.price * 0.84);
                 }
                 return x;
             })
@@ -254,6 +303,7 @@ const coffeeSlice = createSlice({
         Tick:(state) =>{
             state.coffee += state.totalCPS/10;
             state.totalCoffee += state.totalCPS/10;
+            state.coffeePClick
             return state;
         },
         UnlockProducers: (state) => {
