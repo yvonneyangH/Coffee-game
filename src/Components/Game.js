@@ -5,6 +5,7 @@ import Producers from './Producer';
 import CoffeeStore from './CoffeeStore';
 import RandomCoffee from './RandomCoffee';
 import UpgradeInfo from './UpgradeInfo';
+import Coffee from './Coffee';
 
 
 const Game = ()=> {
@@ -66,7 +67,7 @@ const Game = ()=> {
           dispatch(Tick());
           dispatch(RollDice());
           dispatch(BonusKill());
-        }, 100);
+        }, 1000);
     
         // Clean up the interval when the component unmounts
         return () => {
@@ -85,11 +86,14 @@ const Game = ()=> {
                 : {  backgroundImage: `url('${url}')`,backgroundSize: "cover", backgroundPosition: "center center" }
                 }
         >
+            
             <div className="column">
                 <div className="container left">
+                    
                     <div className="counter-container">Coffee: <span id="coffee_counter">{coffee.coffee.toFixed(2)}</span></div>
                     <div className="cps-container"><span id="cps">{coffee.totalCPS}</span> coffee/second</div>
                     <RandomCoffee/>
+                    
                     <div id="big_coffee" onClick={handleClickCoffee}>☕️
                     { showCoffeePerClick&&
                         <span className="click-animation" style={{color:"white"}}>+{coffee.coffeePClick}</span>
@@ -99,7 +103,9 @@ const Game = ()=> {
                         <button className ='store' id ='save' onClick={saveLocal}>SAVE</button>
                         <button className ='store' id ='load' onClick={loadLocal}>LOAD</button>
                     </div>
+                    
                 </div>
+                <Coffee />
             </div>
            
             <div className="column">
@@ -113,6 +119,7 @@ const Game = ()=> {
                 </div>   
             </div>
         </div>
+        
     </div>
   );
 };

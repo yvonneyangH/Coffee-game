@@ -5,7 +5,7 @@ const initialState={
     goldern_cup:[
         {
         id: 'goldencup',
-        life: 101,
+        life: 11,
         active: false,
         luckNumber: [1],
         positionX:0,
@@ -18,7 +18,7 @@ const bonusCoffeeSlice = createSlice({
     initialState,
     reducers:{
         RollDice:(state) => {
-            let dice = Math.floor(Math.random() * 100) + 1;
+            let dice = Math.floor(Math.random() * 3) + 1;
             // console.log("dice:",dice) //make this random number 1-100
             let x = Math.floor(Math.random()*71+15) ;
             let y = Math.floor(Math.random()*71+15) ;
