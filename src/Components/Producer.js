@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AttempToBuyProducer, AttempToSellProducer } from '../store';
+import ProducerInfo from './ProducerInfo';
 
 
 
@@ -15,9 +16,7 @@ const Producers = () => {
         if (coffee.coffee>=price){
             dispatch(AttempToBuyProducer(id));
         }
-        else{
-            window.alert('Not enough coffee to buy this producer!');
-        }
+       
     }
     const handleSell=(id,price)=>{
         // console.log('sell')
@@ -44,12 +43,14 @@ const Producers = () => {
                 )
             })
         }
+
         </>
     )
 
     
 }
 const Producer = (props)=>{
+    const {coffee} = useSelector(state => state);
     const producer = props.producer;
     const handleBuy = props.handleBuy;
     const handleSell = props.handleSell;
@@ -65,15 +66,18 @@ const Producer = (props)=>{
     return (
         <div className='producer'>
             <div className="producer-column">
-                <div className="producer-title">{makeDisplayNameFromId(producer.id)}</div>
-                <button type="button" id="buy_producer.id" onClick={()=>handleBuy(producer.id,producer.price)}>Buy</button>
-                <button type="button" id="sell_producer.id"onClick={()=>handleSell(producer.id,producer.price)} disabled={producer.qty<=0}>Sell</button>
+                <div className={`producer-title ${coffee.coffee >= producer.price || producer.qty>0?'' : 'producer-row-disabled'}`} style ={{fontSize:"1.2rem"}}>
+                    {makeDisplayNameFromId(producer.id)}
+                    <span style={{fontSize:'0.8rem'}}>{`       `+`        (coffee/sec: ${producer.cps})`}</span>
+                </div>
+                <button  className={coffee.coffee < producer.price?'buy-sell-button-disabled' : ''} type="button" id="buy_producer.id" onClick={()=>handleBuy(producer.id,producer.price)} disabled={coffee.coffee < producer.price}>Buy</button>
+                <button className={producer.qty<=0?'buy-sell-button-disabled' : ''} type="button" id="sell_producer.id" onClick={()=>handleSell(producer.id,producer.price)} disabled={producer.qty<=0}>Sell</button>
             </div>
             <div className="producer-column">
-                <div>{`Quantity: ${producer.qty}`}</div>
-                <div>{`Coffee/second: ${producer.cps}`}</div>
+                <div >Quantity: <span style={{fontSize:"2.5rem"}}>{producer.qty}</span></div>
                 <div>{`Cost: ${producer.price} coffee`}</div>
             </div>
+
         </div>
     )
 

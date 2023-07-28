@@ -105,7 +105,12 @@ const Game = ()=> {
                     </div>
                     
                 </div>
-                <Coffee />
+                {
+                    coffee.totalCPS>=1&&(
+                        <Coffee />
+                    )
+                }
+                
             </div>
            
             <div className="column">

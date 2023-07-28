@@ -1,8 +1,9 @@
 import React from 'react';
 import CoffeeFlake from './CoffeeFlake';
+import { useSelector } from 'react-redux';
 
 const Coffee = () => {
-  const numFlakes = 10;
+  const numFlakes = 20;
   const coffeeFlakes = new Array(numFlakes).fill('');
 
   return (

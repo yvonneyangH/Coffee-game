@@ -383,4 +383,14 @@ div{
 .white-content-image {
   filter: invert(100%);
 }
+.producer .buy-sell-button-disabled{
+  opacity: 0.5; 
+  cursor: not-allowed;
+}
+.producer-row-disabled{
+    opacity: 0.3; 
+    color:rgb(188, 188, 188);
+   
+
+}
 

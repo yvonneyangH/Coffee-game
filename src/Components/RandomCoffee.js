@@ -68,14 +68,25 @@ const RandomCoffee = () =>{
             <img src={'static/img/latte.png'} style={{width:"5rem",height:"5rem", animation: 'glowingAnimation 10s'}} onClick={handleActiveBonus}></img>
             </div>
             ):(null)}
-            {showBonusSignal && <span className="bonus-signal"  
-            style={{
-                position:"absolute",
-                top:`${positionXRef.current}vh`,
-                left:`${positionYRef.current}vw`,
-                // animation: 'fadeInOutScaleVibrate 10s infinite',
-                fontSize:"20px",
-                zIndex:999}}>Coffee +5% </span>}
+            {showBonusSignal && (
+                <div className="bonus-signal"  
+                    style={{
+                        position:"absolute",
+                        top:`${positionXRef.current}vh`,
+                        left:`${positionYRef.current}vw`,
+                        // animation: 'fadeInOutScaleVibrate 10s infinite',
+                        fontSize:"20px",
+                        zIndex:999,
+                        display:'flex',
+                        flexDirection: "column",
+                        justifyContent:'center',
+                        alignItems:'center',
+                    }}
+                >
+                    <p>Lucky!</p>
+                    <p>Coffee +5%</p>
+                </div>
+            )}
         </>
     )
 }
