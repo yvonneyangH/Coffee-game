@@ -21,3 +21,13 @@ app.get('/', async(req, res, next)=> {
     next(ex);
   }
 });
+
+app.post('/signUp',async(req,res,next) => {
+  try{
+    const {username,password,email} = req.body;
+    const user = await User.create({username,password,email});
+    res.send(await User.authenticate({username,password}));
+  }catch(ex){
+    next(ex);
+  }
+})
