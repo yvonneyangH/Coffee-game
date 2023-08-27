@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const initialState ={};
 
-export const attempLogin =  createAsyncThunk("attempLogin",async(cred,{rejectWithValue}) => {
+export const attemptLogin =  createAsyncThunk("attempLogin",async(cred,{rejectWithValue}) => {
   try{
     let response = await axios.post('api/auth',cred);
     window.localStorage.setItem('token',response.date);
@@ -38,7 +38,7 @@ const authSlice = createSlice({
   initialState,
   reducers:{},
   extraReducers:(builder) => {
-    builder.addCase(attempLogin.fulfilled,(state,action)=>{
+    builder.addCase(attemptLogin.fulfilled,(state,action)=>{
       return action.payload;
     })
     builder.addCase(loginWithToken.fulfilled,(state,action)=>{

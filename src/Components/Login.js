@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { attemptLogin } from '../store';
 import { useDispatch } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 
@@ -9,17 +10,29 @@ const LoginModal = (props) => {
   const openLoginModal = props.openLoginModal;
   const closeLoginModal = props.closeLoginModal;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [credentials,setCredentials] = useState({
     username:"",
     email:"",
     password:"",
   })
+  const [loginError, setLoginError] = useState(null);
 
-  const handleLogin = ()=> {
-
+  const handleLogin = (ev)=> {
+    console.log("handle Log in")
+    ev.preventDefault();
+    console.log("attemp log in")
+    dispatch(attemptLogin(credentials))
+    .unwrap()
+    .then(()=>{
+      closeLoginModal();
+      navigate("/");
+    })
   }
-  
 
+  const onChange = (ev) => {
+    setCredentials({...credentials,[ev.target.name]:ev.target.value});
+  }
   
   return (
       <>
@@ -40,22 +53,25 @@ const LoginModal = (props) => {
           >
             <div className="modal-content" style={{ marginTop: '-30px' }}>
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Log i</h5>
+                <h5 className="modal-title" id="exampleModalLabel">Log in</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={closeLoginModal}>
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div className="modal-body" style={{ height: '400px', overflowY: 'auto' }}>
                 <div>
-                  <form>
+                  <form onSubmit={handleLogin}>
                     <input
                       placeholder='username'
-                      name = 'username'
-                      value = {}
+                      name='username'
+                      value={credentials.username}
+                      onChange={onChange}
                       />
                     <input
                       placeholder='password'
-                      name = 'password'
+                      name='password'
+                      value={credentials.password}
+                      onChange={onChange}
                     />
                     <button>Login</button>
                   </form>
