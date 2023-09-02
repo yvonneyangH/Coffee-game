@@ -1,5 +1,7 @@
 const conn = require('./conn');
 const User = require('./User');
+const CoffeeStatus = require('./CoffeeStatus');
+const ProducerList = require('./ProducerList');
 
 const Order = require('./Order');
 const LineItem  = require('./LineItem');
@@ -7,6 +9,9 @@ const LineItem  = require('./LineItem');
 Order.belongsTo(User);
 LineItem.belongsTo(Order);
 Order.hasMany(LineItem);
+
+CoffeeStatus.belongsTo(User);
+
 
 
 const syncAndSeed = async()=> {
@@ -24,4 +29,6 @@ const syncAndSeed = async()=> {
 module.exports = {
   syncAndSeed,
   User,
+  CoffeeStatus,
+  ProducerList,
 };

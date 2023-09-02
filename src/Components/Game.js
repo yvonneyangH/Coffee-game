@@ -10,7 +10,8 @@ import Coffee from './Coffee';
 
 const Game = ()=> {
     const {coffee,bonusCoffee} = useSelector(state => state);
-    console.log("coffee:",coffee);
+    const user = useSelector((state) => state.auth)
+    // console.log("coffee:",coffee);
     // console.log("bonusCoffee:",bonusCoffee);
     const dispatch = useDispatch();
     const [showCoffeePerClick,setShowCoffeePerClick] = useState(false);
@@ -40,11 +41,17 @@ const Game = ()=> {
     }
 
     const saveLocal =() => {
-        console.log("coffee:",coffee);
-        window.localStorage.setItem("gameLog",JSON.stringify(coffee));
-        console.log('set LocalStorage');
-        let log =window.localStorage.getItem("gameLog");
-        console.log("parse log:",JSON.parse(log));
+        if(user.username){
+            console.log('hi, with user name')
+        }else{
+            
+            console.log("without user log in , print coffee:",coffee);
+            window.localStorage.setItem("gameLog",JSON.stringify(coffee));
+            console.log('set LocalStorage');
+            let log =window.localStorage.getItem("gameLog");
+            console.log("parse log:",JSON.parse(log));
+        }
+
 
     }
     const loadLocal = () => {

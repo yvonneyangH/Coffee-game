@@ -37,6 +37,8 @@ const User = conn.define('user', {
   }
 });
 
+
+
 User.addHook('beforeSave', async(user)=> {
   if(user.changed('password')){
     user.password = await bcrypt.hash(user.password, 5);
@@ -57,6 +59,28 @@ User.findByToken = async function(token){
     error.status = 401;
     throw error;
   }
+}
+
+User.prototype.createCoffeeStatus = async function(){
+  const status = await this.getStatus();
+  return status;
+}
+
+User.prototype.getStatus = async function(){
+  let status = await conn.models.coffeeStatus.findOne({
+    where:{
+      userId:this.id
+    }
+  });
+  if(!status){
+    status = await conn.models.coffeeStatus.create({
+      userId:this.id
+    })
+  }
+  status = await conn.models.coffeeStatus.findByPk(
+    status.id
+  )
+  return status;
 }
 
 User.prototype.generateToken = function(){
