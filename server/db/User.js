@@ -1,5 +1,5 @@
 const conn = require('./conn');
-const { STRING, UUID, UUIDV4 } = conn.Sequelize;
+const { STRING, UUID, UUIDV4, INTEGER } = conn.Sequelize;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const JWT = process.env.JWT;
@@ -34,7 +34,11 @@ const User = conn.define('user', {
       isEmail:true,
     },
     unique:true,
-  }
+  },
+  coffeeStatus:{
+    type:INTEGER,
+    allowNull:true,
+  },
 });
 
 

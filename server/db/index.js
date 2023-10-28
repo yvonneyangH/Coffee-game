@@ -21,6 +21,8 @@ const syncAndSeed = async()=> {
     User.create({ username: 'lucy', password: '123', email:'lucylucy@hotmail.com'}),
     User.create({ username: 'larry', password: '123', email:'larrylarry@hotmail.com'}),
     User.create({ username: 'ethyl', password: '123', email:'ethylethyl@hotmail.com'}),
+
+    CoffeeStatus.create({userId:moe})
   ]);
 
 };
