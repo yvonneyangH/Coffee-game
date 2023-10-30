@@ -5,7 +5,7 @@ import coffee from './coffee';
 import bonusCoffee from './bonusCoffee';
 
 const store = configureStore({
-  // middleware: (defaultMiddleware)=> defaultMiddleware().concat(logger),
+  //middleware: (defaultMiddleware)=> defaultMiddleware().concat(logger),
   reducer:{
     auth: auth,
     coffee:coffee,

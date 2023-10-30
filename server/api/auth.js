@@ -32,10 +32,13 @@ app.post('/signUp',async(req,res,next) => {
   }
 })
 
-// app.post('/save',async(req,res,next) => {
-//   try{
+app.put('/save',async(req,res,next) => {
+  try{
+    const curCoffee = req.body;
+    const user = await User.findByToken(req.headers.authorization);
+    res.send(await user.update({coffeeStatus:1}))
     
-//   }catch(ex){
-//     next(ex);
-//   }
-// })
+  }catch(ex){
+    next(ex);
+  }
+})
