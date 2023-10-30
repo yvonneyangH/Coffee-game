@@ -33,6 +33,18 @@ export const loginWithToken = createAsyncThunk("loginWithToken", async(_,{reject
   }
 })
 
+export const attemptSave = createAsyncThunk("attemptSave", async(curCoffee)=> {
+  const token = window.localStorage.getItem('token');
+  let response = await axios.post('api/auth/save',{
+    headers:{
+      authorization:token,
+      curCoffee:curCoffee
+    }
+  });
+  return response.data
+
+})
+
 const authSlice = createSlice({
   name:"auth",
   initialState,
