@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ClickCoffee, Tick, UnlockBackground, UnlockProducers, RollDice, BonusKill, UpdateInitialState } from '../store';
+import { ClickCoffee, Tick, UnlockBackground, UnlockProducers, RollDice, BonusKill, UpdateInitialState,attemptSave } from '../store';
 import Producers from './Producer';
 import CoffeeStore from './CoffeeStore';
 import RandomCoffee from './RandomCoffee';
@@ -42,7 +42,9 @@ const Game = ()=> {
 
     const saveLocal =() => {
         if(user.username){
-            console.log('hi, with user name')
+            console.log('hi, with user name');
+            console.log('coffee.coffee:',coffee.coffee);
+            dispatch(attemptSave(coffee));
         }else{
             
             console.log("without user log in , print coffee:",coffee);
@@ -97,7 +99,7 @@ const Game = ()=> {
             <div className="column">
                 <div className="container left">
                     
-                    <div className="counter-container">Coffee: <span id="coffee_counter">{coffee.coffee.toFixed(2)}</span></div>
+                    <div className="counter-container">Coffee:<span> {user.username}</span> <span id="coffee_counter">{coffee.coffee.toFixed(2)}</span></div>
                     <div className="cps-container"><span id="cps">{coffee.totalCPS}</span> coffee/second</div>
                     <RandomCoffee/>
                     

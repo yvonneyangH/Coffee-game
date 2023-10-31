@@ -15,6 +15,10 @@ const CoffeeStatus = conn.define('coffeeStatus', {
     type:INTEGER,
     defaultValue: 0,
   },
+  totalCoffee:{
+    type:INTEGER,
+    defaultValue:0,
+  },
   coffeePClick:{
     type:INTEGER,
     defaultValue:0,
