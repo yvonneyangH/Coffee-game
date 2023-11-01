@@ -61,7 +61,12 @@ export const attemptSave = createAsyncThunk("attemptSave", async(curCoffee,{reje
 const authSlice = createSlice({
   name:"auth",
   initialState,
-  reducers:{},
+  reducers:{
+    logout:(state) => {
+      window.localStorage.removeItem('token');
+      return {};
+    }
+  },
   extraReducers:(builder) => {
     builder.addCase(attemptLogin.fulfilled,(state,action)=>{
       return action.payload;
@@ -74,4 +79,9 @@ const authSlice = createSlice({
     })
   }
 })
+
+const { logout } = authSlice.actions;
+
+export { logout };
+
 export default authSlice.reducer;
