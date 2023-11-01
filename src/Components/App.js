@@ -26,6 +26,9 @@ const App = ()=> {
         <nav>
           <Link to='/'>Home</Link>
           <Link to='/game'>Game</Link>
+          {auth.username?(<button className="btn btn-light ms-3" >logout</button>):
+            (<button className="btn btn-light ms-3" >login</button>)
+          }
         </nav>
         <Routes>
           <Route path='/' element={ <Home /> } />

@@ -1,13 +1,15 @@
 import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginModal from './Login';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import { logout } from '../store';
 
 
 
 const Home = ()=> {
   const user = useSelector((state) => state.auth)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isLoginModalOpen, setIsLoginModal] = useState(false)
 
   const handleStartGame = () => {
@@ -18,6 +20,10 @@ const Home = ()=> {
   }
   const openLoginModal = () => {
     setIsLoginModal(true)
+  }
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
   }
 
  
@@ -31,7 +37,11 @@ const Home = ()=> {
           <button style={{width:"10rem"}} onClick={handleStartGame}>Start Game</button>
         </div>
         <div style={{textAlign:"center",paddingTop:"1rem",paddingBottom:"1rem"}}>
-          <button style={{width:"10rem"}} onClick={openLoginModal}>Log In</button>
+          {user.username?
+          <button style={{width:"10rem"}} onClick={handleLogout}>Log Out</button>:
+          <button style={{width:"10rem"}} onClick={openLoginModal}> Log In</button>
+          }
+          
         </div>
         <div style={{textAlign:"center",paddingTop:"1rem",paddingBottom:"1rem"}}>
           <button style={{width:"10rem"}}>Ranking</button>
