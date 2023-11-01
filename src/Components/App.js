@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Home from './Home';
 import Login from './Login';
-
+import Navbar from './Navbar';
 import Game from './Game';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginWithToken} from '../store';
@@ -20,16 +20,11 @@ const App = ()=> {
       console.log('hi');
     }
   }, [auth]);
+  
 
   return (
       <div>
-        <nav>
-          <Link to='/'>Home</Link>
-          <Link to='/game'>Game</Link>
-          {auth.username?(<button className="btn btn-light ms-3" >logout</button>):
-            (<button className="btn btn-light ms-3" >login</button>)
-          }
-        </nav>
+        <Navbar/>
         <Routes>
           <Route path='/' element={ <Home /> } />
           <Route path='/game' element={ <Game /> } />
