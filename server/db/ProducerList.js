@@ -9,11 +9,11 @@ const ProducerList = conn.define('producerList',{
     },
     producerId:{
         type:STRING,
-        allowNull:false,
+        allowNull:true,
     },
     price:{
         type:INTEGER,
-        allowNull:false,
+        allowNull:true,
     },
     unlocked:{
         type:BOOLEAN,
@@ -21,15 +21,15 @@ const ProducerList = conn.define('producerList',{
     },
     cps:{
         type:INTEGER,
-        allowNull:false,
+        allowNull:true,
     },
     qty:{
         type:INTEGER,
-        allowNull:false,
+        allowNull:true,
     },
     imgUrl:{
         type:STRING,
-        allowNull:false
+        allowNull:true
     },
 
 });

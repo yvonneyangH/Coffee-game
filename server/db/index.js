@@ -11,6 +11,7 @@ LineItem.belongsTo(Order);
 Order.hasMany(LineItem);
 
 CoffeeStatus.belongsTo(User);
+ProducerList.belongsTo(User);
 
 
 
@@ -25,6 +26,7 @@ const syncAndSeed = async()=> {
     // CoffeeStatus.create({userId:moe.id})
   ]);
   await CoffeeStatus.create({userId:moe.id})
+  await ProducerList.create({userId:moe.id})
 
 };
 
