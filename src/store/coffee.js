@@ -234,7 +234,22 @@ const initialState={
         },
 
     ]
-}
+};
+
+const fetchCoffee = createAsyncThunk('fetchCoffee', async () => {
+    try{
+        const token = window.localStorage.getItem('token');
+        const response = await axiost.get('api/coffeeStatus',{
+            headers:{
+                authorization:token
+            }
+        })
+
+    }catch(err){
+        console.log(err);
+    }
+
+});
 
 const coffeeSlice = createSlice({
     name:"coffee",

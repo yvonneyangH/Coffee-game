@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express.Router();
-const { User, CoffeeStatus } = require('../db');
+const { User, CoffeeStatus, ProducerList } = require('../db');
 
 module.exports = app;
 
@@ -44,10 +44,12 @@ app.put('/save',async(req,res,next) => {
       const curTotalCPS = req.query.curCoffee.totalCPS; 
       const curTotalCoffee = req.query.curCoffee.totalCoffee; 
       const coffeeStatus = await CoffeeStatus.findOne({where:{userId:user.id}})
+      const producerlist = await ProducerList.findOne({where:{userId:user.id}})
       if(!coffeeStatus){
         res.status(404).json({error:"coffee status not found"})
       }else{
         await coffeeStatus.update({coffee:curCoffee,totalCPS:curTotalCPS,totalCoffee:curTotalCoffee,})
+        await producerlist.update({producerId:'lv1',})
       }
       res.send(await User.findByToken(req.headers.authorization));
     }
